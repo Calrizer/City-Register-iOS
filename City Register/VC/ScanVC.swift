@@ -148,7 +148,7 @@ extension ScanVC: AVCaptureMetadataOutputObjectsDelegate {
                 
                 recent.setValue(data[1], forKey: "id")
                 recent.setValue(data[2], forKey: "title")
-                recent.setValue("5th November", forKey: "date")
+                recent.setValue("\(Calendar.current.component(.day, from: Date()))\(daySuffix(from: Date())) \(DateFormatter().monthSymbols[Calendar.current.component(.month, from: Date())])", forKey: "date")
                 recent.setValue(data[3], forKey: "lecturer")
                 
                 do {
@@ -167,6 +167,21 @@ extension ScanVC: AVCaptureMetadataOutputObjectsDelegate {
         
         }
         
+    }
+    
+    func daySuffix(from date: Date) -> String {
+        
+        let calendar = Calendar.current
+        let dayOfMonth = calendar.component(.day, from: date)
+        
+        switch dayOfMonth {
+        case 1, 21, 31: return "st"
+        case 2, 22: return "nd"
+        case 3, 23: return "rd"
+        default: return "th"
+        
+        }
+    
     }
     
 }
