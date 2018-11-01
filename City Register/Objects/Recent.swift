@@ -8,11 +8,11 @@
 
 import Foundation
 
-public class Recent:NSObject {
+public class Recent {
     
-    var title : String
-    var date : String
-    var lecturer : String
+    private var title : String
+    private var date : String
+    private var lecturer : String
     
     public init(title:String, date:String, lecturer:String) {
         
