@@ -78,6 +78,10 @@ class RecentsVC: UIViewController {
                     recent.dateLabel.text = (data.value(forKey: "date") as! String)
                     recent.lecturerLabel.text = (data.value(forKey: "lecturer") as! String)
                     
+                    let recentTapRegogniser = UITapGestureRecognizer()
+                    
+                    recent.addGestureRecognizer(recentTapRegogniser)
+                    
                     mainScrollView.addSubview(recent)
                     
                     currentHeight = CGFloat(currentHeight) + (recent.frame.height + 12)
@@ -105,6 +109,13 @@ class RecentsVC: UIViewController {
             bottomView.frame = CGRect(x:bottomView.frame.origin.x, y:bottomView.frame.origin.y - view.safeAreaInsets.bottom, width:bottomView.frame.size.width, height:bottomView.frame.size.height)
             
         }
+        
+    }
+    
+    func testFunc(){
+        
+        
+        
         
     }
    

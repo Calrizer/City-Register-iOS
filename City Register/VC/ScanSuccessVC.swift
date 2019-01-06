@@ -11,9 +11,16 @@ import CoreData
 
 class ScanSuccessVC: UIViewController {
 
+    @IBOutlet weak var dismissButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        dismissButton.layer.cornerRadius = 10
+        dismissButton.clipsToBounds = true
+        
+        
+        
 //        if let encoded = UserDefaults.standard.data(forKey: "recents"){
 //
 //            do {

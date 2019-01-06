@@ -48,6 +48,11 @@
         <string>Ralewayregular.ttf</string>
     </array>
     <key>NSCameraUsageDescription</key>
-    <string>We need to use the camera so you can codes.</string>
+    <string>We need to use the camera so you can scan codes.</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
 </dict>
 </plist>

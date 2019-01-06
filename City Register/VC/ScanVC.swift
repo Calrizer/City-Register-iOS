@@ -144,7 +144,7 @@ extension ScanVC: AVCaptureMetadataOutputObjectsDelegate {
                 
                 recent.setValue(data[1], forKey: "id")
                 recent.setValue(data[2], forKey: "title")
-                recent.setValue("\(Calendar.current.component(.day, from: Date()))\(daySuffix(from: Date())) \(DateFormatter().monthSymbols[Calendar.current.component(.month, from: Date())])", forKey: "date")
+                recent.setValue("\(Calendar.current.component(.day, from: Date()))\(daySuffix(from: Date())) \(DateFormatter().monthSymbols[Calendar.current.component(.month, from: Date()) - 1])", forKey: "date")
                 recent.setValue(data[3], forKey: "lecturer")
                 
                 do {
@@ -156,6 +156,22 @@ extension ScanVC: AVCaptureMetadataOutputObjectsDelegate {
                     print("Failed saving")
                     
                 }
+                
+                let prehash = data[1] + "1234"
+                var hash = 0
+                
+                for char in prehash {
+                    let s = String(char).unicodeScalars
+                    hash = hash + (Int(s[s.startIndex].value) * 256)
+                }
+                
+                print(hash)
+                
+                let url = URL(string: "http://ec2-35-178-179-182.eu-west-2.compute.amazonaws.com:3000/api/register/\(data[1])?studentID=1234&checksum=\(hash)")
+                let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+                    print(data ?? "Error")
+                }
+                task.resume()
             
                 captureSession.stopRunning()
                 performSegue(withIdentifier: "scanSuccessSegue", sender: self)
